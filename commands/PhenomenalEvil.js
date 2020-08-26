@@ -9,12 +9,22 @@ module.exports = {
 		const col = db.collection('users');
 
 		// check if user exists, if not, create
-		if(!Functions.CheckUserExists(msg, db)) {
-			Functions.CreateUser(msg, db);
-		}
-		else {
-			console.log('user exists');
-		}
+		// if(!Functions.CheckUserExists(msg, db)) {
+		// 	Functions.CreateUser(msg, db);
+		// }
+		Functions.CheckUserExists(msg, db).then(myDoc => {
+			if (myDoc) {
+			// exists
+				console.log('exists');
+			}
+			else {
+			// doesnt exist
+				console.log('doesnt exist');
+
+				// Functions.CreateUser(msg, db);
+
+			}
+		});
 
 		col.findOne({ id:msg.author.id })
 			.then(function(myDoc) {

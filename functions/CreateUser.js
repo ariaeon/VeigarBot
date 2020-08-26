@@ -1,4 +1,4 @@
-module.exports = async function CreateUser(msg, db) {
+module.exports = function CreateUser(msg, db) {
 	const col = db.collection('users');
 
 	console.log('Create User called');
@@ -11,6 +11,7 @@ module.exports = async function CreateUser(msg, db) {
 	};
 
 	// Insert a single document, wait for promise
-	await col.insertOne(userDocument);
-	console.log(`User added to db: ${userDocument.name}`);
+	col.insertOne(userDocument)
+		.then(console.log(`User added to db: ${userDocument.name}`));
+
 };

@@ -1,11 +1,7 @@
 module.exports = async function CheckUserExists(msg, db) {
+	console.log('Check users called');
 	const col = db.collection('users');
-
-	await col.findOne({ id:msg.author.id })
-		.then(function(myDoc) {
-			if(myDoc === null) console.log('mydoc is null');
-
-			if(myDoc === null) return false;
-			return true;
-		});
+	const myDoc = await col.findOne({ id: msg.author.id }) ;
+	if (myDoc !== null) return true;
+	else return false;
 };
