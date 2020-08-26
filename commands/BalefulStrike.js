@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports = {
-	name: 'Baleful Strike',
+	name: 'BalefulStrike',
 	description: 'qqqqqqqq',
 	cooldown: 5,
 	aliases: ['q'],
@@ -32,7 +32,7 @@ module.exports = {
 					console.log(`User added to db: ${myDoc.name}`);
 				}
 
-				// create a filter for a movie to update
+				// create a filter
 				const filter = { id: msg.author.id };
 
 				// create a document that increases the ap

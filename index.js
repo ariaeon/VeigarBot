@@ -7,9 +7,9 @@ const { MongoClient } = require('mongodb');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const cooldowns = new Discord.Collection();
-const url = 'mongodb+srv://nova:***REMOVED***@cluster0.4vrqi.azure.mongodb.net/Cluster0?retryWrites=true&w=majority';
+const url = 'mongodb+srv://BotUser:5s9Mki88RBQsqfYz@cluster0.4vrqi.azure.mongodb.net/Cluster0?retryWrites=true&w=majority';
 
-const dbclient = new MongoClient(url);
+const dbclient = new MongoClient(url, { useUnifiedTopology: true });
 const dbName = 'VeigarBot';
 let db;
 
@@ -17,7 +17,7 @@ let db;
 const Commands = require('./commands');
 
 Object.keys(Commands).map(key => {
-	client.commands.set(Commands[key].name, Commands[key]);
+	client.commands.set(Commands[key].name.toLowerCase(), Commands[key]);
 });
 
 // LoadDB :)
@@ -25,17 +25,7 @@ async function LoadDB() {
 	try {
 		await dbclient.connect();
 		console.log('Connected correctly to server');
-
 		db = dbclient.db(dbName);
-
-		// Use the collection "people"
-		const col = db.collection('users');
-
-		// Find one document
-		const myDoc = await col.findOne();
-		// Print to the console
-		console.log(myDoc);
-
 	}
 	catch (err) {
 		console.log(err.stack);
