@@ -10,9 +10,9 @@ module.exports = {
 	// eslint-disable-next-line
 	async execute(msg, args,db) {
 		const col = db.collection('users');
-		const user = await Functions.getUser(msg, db);
+		let user = await Functions.getUser(msg, db);
 		if (!user) {
-			await Functions.createUser(msg, db);
+			user = await Functions.createUser(msg, db);
 		}
 
 		let target = 'nothing';

@@ -10,5 +10,5 @@ module.exports = async function createUser(msg, db) {
 	// Insert a single document, wait for promise
 	await col.insertOne(userDocument);
 	console.log(`User added to db: ${userDocument.name}`);
-
+	return userDocument;
 };
