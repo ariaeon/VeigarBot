@@ -7,9 +7,9 @@ module.exports = {
 	// eslint-disable-next-line
 	async execute(msg, args,db) {
 
-		const user = await Functions.CheckUserExists(msg, db);
+		const user = await Functions.getUser(msg, db);
 		if (!user) {
-			await Functions.CreateUser(msg, db);
+			await Functions.createUser(msg, db);
 		}
 
 		msg.reply(`You have ${user.ap} stacks of Phenomenal Evil!`) ;

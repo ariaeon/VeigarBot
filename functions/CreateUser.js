@@ -1,4 +1,4 @@
-module.exports = async function CreateUser(msg, db) {
+module.exports = async function createUser(msg, db) {
 	console.log('Create User called');
 	const col = db.collection('users');
 	const userDocument = {

@@ -1,4 +1,4 @@
 module.exports = {
-	CreateUser: require('./CreateUser'),
-	CheckUserExists: require('./CheckUserExists.js'),
+	createUser: require('./createUser.js'),
+	getUser: require('./getUser.js'),
 };
