@@ -6,6 +6,7 @@ module.exports = async function createUser(msg, db) {
 		'name': msg.author.username,
 		'ap': 0,
 		'joindate': Date.now(),
+		'mana':490,
 	};
 	// Insert a single document, wait for promise
 	await col.insertOne(userDocument);

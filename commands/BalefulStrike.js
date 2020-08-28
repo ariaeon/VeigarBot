@@ -7,14 +7,17 @@ module.exports = {
 	cooldown: 6,
 	aliases: ['q'],
 	usage: '<@mention>',
+	mana: -60,
 	// eslint-disable-next-line
 	async execute(msg, args,db) {
+		// get user or create
 		const col = db.collection('users');
 		let user = await Functions.getUser(msg, db);
 		if (!user) {
 			user = await Functions.createUser(msg, db);
 		}
 
+		// vars
 		let target = 'nothing';
 		let incrementap = 0;
 		let kill = false;
@@ -40,24 +43,20 @@ module.exports = {
 
 		}
 
+		// if mention, calculate hit or not + dmg//
 		if(msg.mentions.users.first()) {
 			calculateHit();
 		}
 
-		// create a filter
-		const filter = { id: msg.author.id };
-		// create a document that increases the ap
-		const updateDoc = {
-			$set: {
-				ap: user.ap + incrementap,
-			},
-		};
+		// Update the users AP and mana
+		// check if this has to be async
+		if(incrementap != 0) Functions.updateAP(user, col, incrementap);
 
-		const res = await col.updateOne(filter, updateDoc);
+		const mana = await Functions.updateMana(user, col, this.mana);
+		if (!mana) {
+			return msg.channel.send('You do not have enough mana!');
+		}
 
-		console.log(
-			`${res.matchedCount} document(s) matched the filter, updated ${res.modifiedCount} document(s)`,
-		);
 		// TODO	randomise messages
 		// TODO more efficient?
 		const exampleEmbed = new Discord.MessageEmbed()
