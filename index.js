@@ -1,6 +1,8 @@
 // Import & create client, command & cooldown collection
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
+const Functions = require('./functions');
+
 const { MongoClient } = require('mongodb');
 
 
@@ -33,11 +35,17 @@ async function LoadDB() {
 
 }
 
+function regenCycle() {
+	Functions.regenMana(db);
+	setTimeout(regenCycle, 5000);
+}
+
 
 // Executed on login
 client.once('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 	LoadDB();
+	regenCycle();
 });
 
 // Executed every message

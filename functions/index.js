@@ -3,5 +3,5 @@ module.exports = {
 	getUser: require('./getUser.js'),
 	updateAP: require('./updateAP.js'),
 	updateMana: require('./updateMana.js'),
-
+	regenMana: require('./regenMana.js'),
 };
