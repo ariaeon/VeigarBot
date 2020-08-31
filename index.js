@@ -42,9 +42,9 @@ function regenCycle() {
 
 
 // Executed on login
-client.once('ready', () => {
+client.once('ready', async () => {
 	console.log(`Logged in as ${client.user.tag}!`);
-	LoadDB();
+	await LoadDB();
 	regenCycle();
 });
 
