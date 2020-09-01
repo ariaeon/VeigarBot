@@ -1,5 +1,5 @@
 const Functions = require('../functions');
-const maxMana = require('../config.json');
+const { maxMana } = require('../config.json');
 
 module.exports = {
 	name: 'resetMana',
