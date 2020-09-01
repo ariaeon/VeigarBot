@@ -7,7 +7,7 @@ module.exports = async function regenMana(db) {
 	let filter = { mana: { $lt: maxMana } };
 	let updateDoc = {
 		$inc: {
-			mana: 5,
+			mana: 2,
 		},
 	};
 

@@ -1,11 +1,10 @@
 const Functions = require('../functions');
+const maxMana = require('../config.json');
 
 module.exports = {
 	name: 'resetMana',
 	description: 'Gain full mana',
 	cooldown: 5,
-	mana: 480,
-	reset: true,
 	aliases: ['rm'],
 	// eslint-disable-next-line no-unused-vars
 	async execute(msg, args, db) {
@@ -15,11 +14,20 @@ module.exports = {
 			user = await Functions.createUser(msg, db);
 		}
 
-		const mana = await Functions.updateMana(user, col, this.mana, this.reset);
-		if (!mana) {
-			return msg.channel.send('You do not have enough mana!');
-		}
-		return msg.channel.send(`newmana: ${mana}`);
+		const filter = { id: user.id };
+		const updateDoc = {
+			$set: {
+				mana: maxMana,
+			},
+		};
+
+		const res = await col.updateOne(filter, updateDoc);
+
+		console.log(
+			`${res.matchedCount} document(s) matched the filter, updated ${res.modifiedCount} document(s)`,
+		);
+
+		return msg.channel.send(`You now have ${maxMana} mana!`);
 
 
 	},
