@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const Functions = require('../functions');
+const { maxMana } = require('../config.json');
+
 
 module.exports = {
 	name: 'BalefulStrike',
@@ -7,7 +9,7 @@ module.exports = {
 	cooldown: 6,
 	aliases: ['q'],
 	usage: '<@mention>',
-	mana: -60,
+	mana: 60,
 	// eslint-disable-next-line
 	async execute(msg, args,db) {
 		// get user or create
@@ -64,7 +66,11 @@ module.exports = {
 			.setTitle('Baleful Strike')
 			.setDescription(`${msg.author.username} ${action} ${target} ${dmgBool ? `${kill ? 'with' : 'for'} **${(240 + (user.ap) * 0.6).toFixed(0)} (60% AP)** damage` : '' } and gains ${incrementap} AP ${kill ? '(5 + 2)' : ''}`)
 			.setThumbnail('https://vignette.wikia.nocookie.net/leagueoflegends/images/f/fd/Baleful_Strike.png')
-			.setFooter(`You have ${user.ap + incrementap} stacks of Phenomenal Evil!`, 'https://vignette.wikia.nocookie.net/leagueoflegends/images/8/88/Phenomenal_Evil_Power.png');
+			.addFields(
+				{ name: '**Phenomenal Evil**', value: `${user.ap + incrementap} **(+${incrementap})**`, inline: true },
+				{ name: '**Mana**', value: `${mana}/${maxMana} **(-${this.mana})**`, inline: true },
+			);
+			// .setFooter(`You have ${user.ap + incrementap} stacks of Phenomenal Evil!`, 'https://vignette.wikia.nocookie.net/leagueoflegends/images/8/88/Phenomenal_Evil_Power.png');
 
 		msg.channel.send(exampleEmbed);
 
