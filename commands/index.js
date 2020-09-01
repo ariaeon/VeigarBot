@@ -4,4 +4,5 @@ module.exports = {
 	BalefulStrike: require('./BalefulStrike.js'),
 	ResetMana: require('./resetMana.js'),
 	Mana: require('./mana'),
+	Profile: require('./profile.js'),
 };
