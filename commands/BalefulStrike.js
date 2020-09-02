@@ -67,8 +67,8 @@ module.exports = {
 			.setDescription(`${msg.author.username} ${action} ${target} ${dmgBool ? `${kill ? 'with' : 'for'} **${(240 + (user.ap) * 0.6).toFixed(0)} (60% AP)** damage` : '' } and gains ${incrementap} AP ${kill ? '(5 + 2)' : ''}`)
 			.setThumbnail('https://vignette.wikia.nocookie.net/leagueoflegends/images/f/fd/Baleful_Strike.png')
 			.addFields(
-				{ name: '**Phenomenal Evil**', value: `${user.ap + incrementap} **(+${incrementap})**`, inline: true },
-				{ name: '**Mana**', value: `${mana}/${maxMana} **(-${this.mana})**`, inline: true },
+				{ name: '<:PE:750663057767661600> **Phenomenal Evil**', value: `${user.ap + incrementap} **(+${incrementap})**`, inline: true },
+				{ name: '<:mana:750663678432641124> **Mana**', value: `${mana}/${maxMana} **(-${this.mana})**`, inline: true },
 			);
 			// .setFooter(`You have ${user.ap + incrementap} stacks of Phenomenal Evil!`, 'https://vignette.wikia.nocookie.net/leagueoflegends/images/8/88/Phenomenal_Evil_Power.png');
 
