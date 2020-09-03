@@ -8,8 +8,8 @@ module.exports = {
 	description: 'qqqqqqqq',
 	cooldown: 6,
 	aliases: ['q'],
-	usage: '<@mention>',
-	mana: 60,
+	usage: '@user',
+	mana: -60,
 	// eslint-disable-next-line
 	async execute(msg, args,db) {
 		// get user or create
@@ -17,6 +17,11 @@ module.exports = {
 		let user = await Functions.getUser(msg, db);
 		if (!user) {
 			user = await Functions.createUser(msg, db);
+		}
+
+		const mana = await Functions.updateMana(user, col, this.mana);
+		if (!mana) {
+			return msg.channel.send('You do not have enough mana!');
 		}
 
 		// vars
@@ -27,9 +32,9 @@ module.exports = {
 		let dmgBool = false;
 		let action = 'hits';
 		const ratio = 0.08;
-		let killchance = 10 + user.ap * ratio;
-		if((10 + user.ap * ratio) > 90) { killchance = 90;}
-		const misschance = 10;
+		let killchance = 5 + user.ap * ratio;
+		if((killchance) > 90) { killchance = 90;}
+		const misschance = 20;
 
 		function calculateHit() {
 			target = msg.mentions.users.first();
@@ -54,11 +59,6 @@ module.exports = {
 		// check if this has to be async
 		if(incrementap != 0) Functions.updateAP(user, col, incrementap);
 
-		const mana = await Functions.updateMana(user, col, this.mana);
-		if (!mana) {
-			return msg.channel.send('You do not have enough mana!');
-		}
-
 		// TODO	randomise messages
 		// TODO more efficient?
 		const exampleEmbed = new Discord.MessageEmbed()
@@ -68,7 +68,7 @@ module.exports = {
 			.setThumbnail('https://vignette.wikia.nocookie.net/leagueoflegends/images/f/fd/Baleful_Strike.png')
 			.addFields(
 				{ name: '<:PE:750663057767661600> **Phenomenal Evil**', value: `${user.ap + incrementap} **(+${incrementap})**`, inline: true },
-				{ name: '<:mana:750663678432641124> **Mana**', value: `${mana}/${maxMana} **(-${this.mana})**`, inline: true },
+				{ name: '<:mana:750663678432641124> **Mana**', value: `${mana}/${maxMana} **(${this.mana})**`, inline: true },
 			);
 			// .setFooter(`You have ${user.ap + incrementap} stacks of Phenomenal Evil!`, 'https://vignette.wikia.nocookie.net/leagueoflegends/images/8/88/Phenomenal_Evil_Power.png');
 
