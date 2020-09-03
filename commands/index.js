@@ -5,4 +5,5 @@ module.exports = {
 	ResetMana: require('./resetMana.js'),
 	Mana: require('./mana'),
 	Profile: require('./profile.js'),
+	PrimordialBurst: require('./PrimordialBurst.js'),
 };
