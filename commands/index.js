@@ -6,4 +6,5 @@ module.exports = {
 	Mana: require('./mana'),
 	Profile: require('./profile.js'),
 	PrimordialBurst: require('./PrimordialBurst.js'),
+	SetSkin: require('./setskin.js'),
 };

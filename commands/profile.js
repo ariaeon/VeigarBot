@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Functions = require('../functions');
-const { maxMana } = require('../config.json');
+const { skin, maxMana } = require('../config.json');
 module.exports = {
 	name: 'Profile',
 	description: 'Shows profile',
@@ -18,7 +18,7 @@ module.exports = {
 			.setColor('#0099ff')
 			.setTitle(msg.author.username)
 			// .setDescription(`${msg.author.username} ${action} ${target} ${dmgBool ? `${kill ? 'with' : 'for'} **${(240 + (user.ap) * 0.6).toFixed(0)} (60% AP)** damage` : '' } and gains ${incrementap} AP ${kill ? '(5 + 2)' : ''}`)
-			.setThumbnail('https://vignette.wikia.nocookie.net/leagueoflegends/images/3/37/Veigar_OriginalSquare.png')
+			.setThumbnail(skin[user.skin])
 			.addFields(
 				{ name: '<:PE:750663057767661600> **Phenomenal Evil**', value: `${user.ap}`, inline: true },
 				{ name: '<:mana:750663678432641124> **Mana**', value: `${user.mana}/${maxMana}`, inline: true },
