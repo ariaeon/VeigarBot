@@ -1,6 +1,6 @@
 // Import & create client, command & cooldown collection
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
+const { prefix, token, databaseUrl } = require('./config.json');
 const Functions = require('./functions');
 
 const { MongoClient } = require('mongodb');
@@ -9,9 +9,8 @@ const { MongoClient } = require('mongodb');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const cooldowns = new Discord.Collection();
-const url = 'mongodb+srv://BotUser:5s9Mki88RBQsqfYz@cluster0.4vrqi.azure.mongodb.net/Cluster0?retryWrites=true&w=majority';
 
-const dbclient = new MongoClient(url, { useUnifiedTopology: true });
+const dbclient = new MongoClient(databaseUrl, { useUnifiedTopology: true });
 const dbName = 'VeigarBot';
 let db;
 
