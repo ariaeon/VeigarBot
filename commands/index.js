@@ -7,4 +7,6 @@ module.exports = {
 	Profile: require('./profile.js'),
 	PrimordialBurst: require('./PrimordialBurst.js'),
 	SetSkin: require('./setskin.js'),
+	SkinList: require('./skinlist.js'),
+
 };

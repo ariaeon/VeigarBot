@@ -17,13 +17,11 @@ module.exports = {
 		const exampleEmbed = new Discord.MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle(msg.author.username)
-			// .setDescription(`${msg.author.username} ${action} ${target} ${dmgBool ? `${kill ? 'with' : 'for'} **${(240 + (user.ap) * 0.6).toFixed(0)} (60% AP)** damage` : '' } and gains ${incrementap} AP ${kill ? '(5 + 2)' : ''}`)
-			.setThumbnail(skin[user.skin])
+			.setThumbnail(skin.filter(s => s.name === user.skin)[0].url)
 			.addFields(
 				{ name: '<:PE:750663057767661600> **Phenomenal Evil**', value: `${user.ap}`, inline: true },
 				{ name: '<:mana:750663678432641124> **Mana**', value: `${user.mana}/${maxMana}`, inline: true },
 			);
-			// .setFooter(`You have ${user.ap + incrementap} stacks of Phenomenal Evil!`, 'https://vignette.wikia.nocookie.net/leagueoflegends/images/8/88/Phenomenal_Evil_Power.png');
 
 		msg.channel.send(exampleEmbed);
 

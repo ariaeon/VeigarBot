@@ -15,14 +15,10 @@ module.exports = {
 		}
 
 		const skinName = args.join('').toLowerCase();
-		console.log(args);
-		console.log(skinName);
-		if(!skin[skinName]) return msg.channel.send('That is not a valid skin!');
+		const newskin = skin.filter(s => s.name == skinName);
+		if(newskin.length === 0) return msg.channel.send('That is not a valid skin!');
 
-		const newskin = skin[skinName];
-		console.log(`newskin: ${newskin}`);
-
-		await Functions.updateSkin(user, db, skinName);
+		await Functions.updateSkin(user, db, newskin[0].name);
 
 		msg.channel.send('Skin updated! Use `!profile` to check it out!');
 
