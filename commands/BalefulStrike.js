@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Functions = require('../functions');
-const { maxMana } = require('../config.json');
+const { skin, maxMana } = require('../config.json');
 
 
 module.exports = {
@@ -64,6 +64,7 @@ module.exports = {
 		const exampleEmbed = new Discord.MessageEmbed()
 			.setColor(dmgBool ? kill ? '#FF0000' : '#0099ff' : '#000000')
 			.setTitle('Baleful Strike')
+			.setAuthor(msg.author.username, skin.filter(s => s.name === user.skin)[0].url)
 			.setDescription(`${msg.author.username} ${action} ${target} ${dmgBool ? `${kill ? 'with' : 'for'} **${(240 + (user.ap) * 0.6).toFixed(0)} (60% AP)** damage` : '' } and gains ${incrementap} AP ${kill ? '(5 + 2)' : ''}`)
 			.setThumbnail('https://vignette.wikia.nocookie.net/leagueoflegends/images/f/fd/Baleful_Strike.png')
 			.addFields(

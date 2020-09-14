@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const Functions = require('../functions');
-const { maxMana } = require('../config.json');
+const { skin, maxMana } = require('../config.json');
 
 
 module.exports = {
@@ -60,6 +60,7 @@ module.exports = {
 		const exampleEmbed = new Discord.MessageEmbed()
 			.setColor(kill ? '#FF0000' : '#0099ff')
 			.setTitle('Primordial Burst')
+			.setAuthor(msg.author.username, skin.filter(s => s.name === user.skin)[0].url)
 			.setDescription(`${msg.author.username} ${action} ${target} ${kill ? 'with' : 'for'} **${(325 + (user.ap) * apratio).toFixed(0)} (${(apratio * 100).toFixed(0)}% AP*)** damage and gains ${incrementap} AP ${kill ? '(5 + 2)' : ''}`)
 			.setThumbnail('https://vignette.wikia.nocookie.net/leagueoflegends/images/e/e7/Primordial_Burst.png')
 			.addFields(
