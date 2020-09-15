@@ -1,6 +1,8 @@
 const { maxMana } = require('../config.json');
-module.exports = async function updateMana(user, col, manacost) {
+module.exports = async function updateMana(user, db, manacost) {
 	console.log('update mana called');
+	const col = db.collection('users');
+
 	const currentmana = user.mana === undefined ? maxMana : user.mana;
 	const newmana = currentmana + manacost;
 

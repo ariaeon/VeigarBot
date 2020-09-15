@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const Functions = require('../functions');
 const { skin } = require('../config.json');
 module.exports = {
-	name: 'Skinlist',
+	name: 'skinlist',
 	description: 'Shows list of skins',
 	cooldown: 0,
 	aliases: ['sl', 'skins'],
@@ -17,9 +17,7 @@ module.exports = {
 		const exampleEmbed = new Discord.MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('Skin List')
-			.setDescription(skin.map(s => `•   ${s.name}`));
-
-		// .setFooter(`You have ${user.ap + incrementap} stacks of Phenomenal Evil!`, 'https://vignette.wikia.nocookie.net/leagueoflegends/images/8/88/Phenomenal_Evil_Power.png');
+			.setDescription('```' + skin.map(s => `* ${s.name}\n`).join('') + '```' + '\r\nUse `!ss [skinname]` or `!setskin [skinname]` to change skin');
 
 		msg.channel.send(exampleEmbed);
 

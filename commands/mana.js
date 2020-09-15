@@ -14,6 +14,5 @@ module.exports = {
 
 		msg.reply(`You have ${user.mana} mana!`) ;
 
-
 	},
 };

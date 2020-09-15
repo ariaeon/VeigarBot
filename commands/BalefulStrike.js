@@ -8,18 +8,18 @@ module.exports = {
 	description: 'qqqqqqqq',
 	cooldown: 6,
 	aliases: ['q'],
-	usage: '@user',
+	usage: '<@user>',
 	mana: -60,
 	// eslint-disable-next-line
 	async execute(msg, args,db) {
 		// get user or create
-		const col = db.collection('users');
 		let user = await Functions.getUser(msg, db);
 		if (!user) {
 			user = await Functions.createUser(msg, db);
 		}
 
-		const mana = await Functions.updateMana(user, col, this.mana);
+		// check mana
+		const mana = await Functions.updateMana(user, db, this.mana);
 		if (!mana) {
 			return msg.channel.send('You do not have enough mana!');
 		}
@@ -57,7 +57,7 @@ module.exports = {
 
 		// Update the users AP and mana
 		// check if this has to be async
-		if(incrementap != 0) Functions.updateAP(user, col, incrementap);
+		if(incrementap != 0) Functions.updateAP(user, db, incrementap);
 
 		// TODO	randomise messages
 		// TODO more efficient?

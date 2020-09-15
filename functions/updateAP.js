@@ -1,5 +1,7 @@
-module.exports = async function updateAP(user, col, ap) {
+module.exports = async function updateAP(user, db, ap) {
 	console.log('update ap called');
+	const col = db.collection('users');
+
 	const filter = { id: user.id };
 	// create a document that increases the ap
 	const updateDoc = {
